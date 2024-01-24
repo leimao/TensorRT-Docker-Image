@@ -8,8 +8,8 @@ ARG OPERATING_SYSTEM=Linux
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install package dependencies
-RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
         build-essential \
         autoconf \
         automake \
@@ -38,8 +38,8 @@ RUN apt-get install -y --no-install-recommends \
         libsm6 \
         libxext6 \
         libxrender-dev \
-        cmake
-RUN apt-get clean
+        cmake && \
+    apt-get clean
 
 RUN cd /usr/local/bin && \
     ln -s /usr/bin/python3 python && \
@@ -51,8 +51,6 @@ RUN cd /usr/local/bin && \
 ENV LC_ALL en_US.UTF-8
 ENV LANG en_US.UTF-8
 ENV LANGUAGE en_US.UTF-8
-
-RUN python3 -m pip install onnx==1.15.0 onnxruntime==1.16.3
 
 COPY ./downloads/TensorRT-${TENSORRT_VERSION}.${OPERATING_SYSTEM}.x86_64-gnu.cuda-${CUDA_USER_VERSION}.tar.gz /opt
 RUN cd /opt && \
@@ -68,3 +66,5 @@ RUN cd /opt && \
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/TensorRT-${TENSORRT_VERSION}/lib
 ENV PATH=$PATH:/opt/TensorRT-${TENSORRT_VERSION}/bin
+
+RUN python3 -m pip install onnx==1.15.0 onnxruntime==1.16.3
