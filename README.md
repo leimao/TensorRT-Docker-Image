@@ -62,3 +62,7 @@ If the TensorRT installation is correct, the output should look like the followi
 [01/24/2024-20:02:59] [I]
 &&&& PASSED TensorRT.trtexec [TensorRT v8601] # trtexec --onnx=/tmp/mnist-12.onnx
 ```
+
+## References
+
+- [TensorRT In Docker](https://leimao.github.io/blog/Docker-TensorRT/)
