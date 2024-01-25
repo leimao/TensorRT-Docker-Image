@@ -61,8 +61,8 @@ RUN cd /opt && \
     python3 -m pip install TensorRT-${TENSORRT_VERSION}/python/tensorrt_lean-*-cp${PYTHON_VERSION}-none-linux_x86_64.whl && \
     python3 -m pip install TensorRT-${TENSORRT_VERSION}/python/tensorrt_dispatch-*-cp${PYTHON_VERSION}-none-linux_x86_64.whl && \
     # Deprecated.
-    python3 -m pip install TensorRT-${TENSORRT_VERSION}/uff/uff-*-py2.py3-none-any.whl && \
-    python3 -m pip install TensorRT-${TENSORRT_VERSION}/graphsurgeon/graphsurgeon-*-py2.py3-none-any.whl && \
+    # python3 -m pip install TensorRT-${TENSORRT_VERSION}/uff/uff-*-py2.py3-none-any.whl && \
+    # python3 -m pip install TensorRT-${TENSORRT_VERSION}/graphsurgeon/graphsurgeon-*-py2.py3-none-any.whl && \
     python3 -m pip install TensorRT-${TENSORRT_VERSION}/onnx_graphsurgeon/onnx_graphsurgeon-*-py2.py3-none-any.whl
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/TensorRT-${TENSORRT_VERSION}/lib
