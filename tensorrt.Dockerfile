@@ -56,15 +56,14 @@ COPY ./downloads/TensorRT-${TENSORRT_VERSION}.${OPERATING_SYSTEM}.x86_64-gnu.cud
 RUN cd /opt && \
     tar -xzf TensorRT-${TENSORRT_VERSION}.${OPERATING_SYSTEM}.x86_64-gnu.cuda-${CUDA_USER_VERSION}.tar.gz && \
     rm TensorRT-${TENSORRT_VERSION}.${OPERATING_SYSTEM}.x86_64-gnu.cuda-${CUDA_USER_VERSION}.tar.gz && \
-    python3 -m pip install TensorRT-${TENSORRT_VERSION}/python/tensorrt-*-cp310-none-linux_x86_64.whl && \
-    python3 -m pip install TensorRT-${TENSORRT_VERSION}/python/tensorrt_lean-*-cp310-none-linux_x86_64.whl && \
-    python3 -m pip install TensorRT-${TENSORRT_VERSION}/python/tensorrt_dispatch-*-cp310-none-linux_x86_64.whl && \
+    export PYTHON_VERSION=$(python3 --version 2>&1 | awk '{print $2}' | cut -d. -f1,2 | tr -d .) && \
+    python3 -m pip install TensorRT-${TENSORRT_VERSION}/python/tensorrt-*-cp${PYTHON_VERSION}-none-linux_x86_64.whl && \
+    python3 -m pip install TensorRT-${TENSORRT_VERSION}/python/tensorrt_lean-*-cp${PYTHON_VERSION}-none-linux_x86_64.whl && \
+    python3 -m pip install TensorRT-${TENSORRT_VERSION}/python/tensorrt_dispatch-*-cp${PYTHON_VERSION}-none-linux_x86_64.whl && \
     # Deprecated.
-    # python3 -m pip install TensorRT-${TENSORRT_VERSION}/uff/uff-0.6.9-py2.py3-none-any.whl && \
-    # python3 -m pip install TensorRT-${TENSORRT_VERSION}/graphsurgeon/graphsurgeon-0.4.6-py2.py3-none-any.whl && \
-    python3 -m pip install TensorRT-${TENSORRT_VERSION}/onnx_graphsurgeon/onnx_graphsurgeon-0.3.12-py2.py3-none-any.whl
+    python3 -m pip install TensorRT-${TENSORRT_VERSION}/uff/uff-*-py2.py3-none-any.whl && \
+    python3 -m pip install TensorRT-${TENSORRT_VERSION}/graphsurgeon/graphsurgeon-*-py2.py3-none-any.whl && \
+    python3 -m pip install TensorRT-${TENSORRT_VERSION}/onnx_graphsurgeon/onnx_graphsurgeon-*-py2.py3-none-any.whl
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/opt/TensorRT-${TENSORRT_VERSION}/lib
 ENV PATH=$PATH:/opt/TensorRT-${TENSORRT_VERSION}/bin
-
-RUN python3 -m pip install onnx==1.15.0 onnxruntime==1.16.3

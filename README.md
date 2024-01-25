@@ -23,7 +23,8 @@ To build the Docker image, please run the following command.
 
 ```bash
 $ TENSORRT_VERSION=8.6.1.6
-$ docker build -f tensorrt.Dockerfile --no-cache --build-arg TENSORRT_VERSION=$TENSORRT_VERSION --tag=tensorrt:$TENSORRT_VERSION .
+$ CUDA_USER_VERSION=12.0
+$ docker build -f tensorrt.Dockerfile --no-cache --build-arg TENSORRT_VERSION=$TENSORRT_VERSION --build-arg CUDA_USER_VERSION=$CUDA_USER_VERSION --tag=tensorrt:$TENSORRT_VERSION .
 ```
 
 ### Run Docker Container
