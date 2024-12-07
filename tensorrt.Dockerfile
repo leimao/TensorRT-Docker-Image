@@ -5,7 +5,7 @@ ARG CUDA_USER_VERSION=12.0
 ARG CUDNN_USER_VERSION=8.9
 ARG OPERATING_SYSTEM=Linux
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install package dependencies
 RUN apt-get update && \

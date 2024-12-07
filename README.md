@@ -24,7 +24,7 @@ To build the Docker image, please run the following command.
 ```bash
 $ TENSORRT_VERSION=8.6.1.6
 $ CUDA_USER_VERSION=12.0
-$ docker build -f tensorrt.Dockerfile --no-cache --build-arg TENSORRT_VERSION=$TENSORRT_VERSION --build-arg CUDA_USER_VERSION=$CUDA_USER_VERSION --tag=tensorrt:$TENSORRT_VERSION .
+$ docker build -f tensorrt.Dockerfile --no-cache --build-arg TENSORRT_VERSION=$TENSORRT_VERSION --build-arg CUDA_USER_VERSION=$CUDA_USER_VERSION --tag tensorrt:$TENSORRT_VERSION .
 ```
 
 ### Run Docker Container
@@ -32,7 +32,7 @@ $ docker build -f tensorrt.Dockerfile --no-cache --build-arg TENSORRT_VERSION=$T
 To run the Docker container, please run the following command.
 
 ```bash
-$ docker run -it --rm --gpus all -v $(pwd):/mnt tensorrt:$TENSORRT_VERSION
+$ docker run -it --rm --gpus all -v $(pwd):/mnt -w /mnt tensorrt:$TENSORRT_VERSION
 ```
 
 ### Run TRTEXEC
